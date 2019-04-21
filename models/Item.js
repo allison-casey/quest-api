@@ -7,7 +7,8 @@ const baseOptions = {
 
 const ItemSchema = new Schema(
   {
-    name: {type: String, required: true}
+    name: {type: String, required: true, unique: true},
+    _name: {type: String, text: true}
   },
   baseOptions
 );
@@ -16,6 +17,10 @@ ItemSchema.virtual("id").get(function() {
   return this._id;
 });
 ItemSchema.set("toJSON", {virtuals: true});
+ItemSchema.pre("save", function(next) {
+  this._name = name;
+  next();
+});
 
 const Item = model("item", ItemSchema);
 
