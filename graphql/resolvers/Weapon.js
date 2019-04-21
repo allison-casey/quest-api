@@ -1,4 +1,4 @@
-import Weapon from "../../../models/Weapon";
+import Weapon from "../../models/Weapon";
 export default {
   Query: {
     weapon: (root, args) =>

@@ -33,4 +33,18 @@ input ArmorWhere {
   weight: IntFilterType
   limit: Int
 }
+type Mutation {
+  addArmor(attributes: ArmorAttributes): Armor
+  addArmors(attributesList: [ArmorAttributes]): [Armor!]!
+  updateArmor(id: ID!, attributes: ArmorAttributes): Armor
+  deleteArmor(id: ID!): Armor
+  deleteAllArmors: Int
+}
+
+type Query {
+  armor(id: ID!): Armor
+  armors: [Armor!]!
+  findArmors(where: ArmorWhere): [Armor!]!
+}
+
 `;

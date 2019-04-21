@@ -1,21 +1,9 @@
-import Armor from "../../../models/Armor";
+import Armor from "../../models/Armor";
 
 export default {
   Query: {
-    armor: (root, args) =>
-      new Promise((resolve, reject) => {
-        Armor.findOne(args).exec((err, res) => {
-          err ? reject(err) : resolve(res);
-        });
-      }),
-    armors: () =>
-      new Promise((resolve, reject) =>
-        Armor.find({})
-          .populate()
-          .exec((err, res) => {
-            err ? reject(err) : resolve(res);
-          })
-      )
+    armor: async (parent, args) => await Armor.findOne(args),
+    armors: async (parent, args) => await Armor.find({}).populate()
   },
   Mutation: {
     addArmor: (root, {id, name, dt, value, weight}) => {

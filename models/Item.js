@@ -5,18 +5,19 @@ const baseOptions = {
   collection: "items"
 };
 
-const ItemSchema = model(
-  "Item",
-  new Schema(
-    {
-      id: {type: String, required: true, unique: true},
-      name: {type: String, required: true}
-    },
-    baseOptions
-  )
+const ItemSchema = new Schema(
+  {
+    name: {type: String, required: true}
+  },
+  baseOptions
 );
 
-const Item = model("Item");
+ItemSchema.virtual("id").get(function() {
+  return this._id;
+});
+ItemSchema.set("toJSON", {virtuals: true});
+
+const Item = model("item", ItemSchema);
 
 export default Item;
 
