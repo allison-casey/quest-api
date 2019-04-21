@@ -19,7 +19,7 @@ mongoose
   .catch(err => console.log("hello", err));
 
 app.use(
-  "/graphql",
+  "/quest",
   cors(),
   bodyParser.json(),
   expressGraphQL({
