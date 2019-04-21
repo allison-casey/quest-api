@@ -1,0 +1,109 @@
+type Armor {
+  id: ID!
+  name: String!
+  type: ArmorType!
+  dt: Int!
+  value: Int!
+  weight: Int!
+  traits: [String!]!
+}
+
+input ArmorAttributes {
+  name: String!
+  type: ArmorType!
+  dt: Int!
+  value: Int!
+  weight: Int!
+  traits: [String!]!
+}
+
+enum ArmorType {
+  CLOTHING
+  LIGHT
+  MEDIUM
+  HEAVY
+  POWER
+}
+
+input ArmorWhere {
+  name: String
+  dt: IntFilterType
+  value: IntFilterType
+  weight: IntFilterType
+  limit: Int
+}
+
+enum ComparisonOperator {
+  LT
+  LE
+  EQ
+  GE
+  GT
+  NE
+}
+
+input IntFilterType {
+  comparitor: ComparisonOperator!
+  input: Int!
+}
+
+union Item = Weapon | Armor
+
+type Mutation {
+  addArmor(attributes: ArmorAttributes): Armor
+  addArmors(attributesList: [ArmorAttributes]): [Armor!]!
+  updateArmor(id: ID!, attributes: ArmorAttributes): Armor
+  deleteArmor(id: ID!): Armor
+  deleteAllArmors: Int
+  addWeapon(attributes: WeaponAttributes): Weapon
+  addWeapons(attributesList: [WeaponAttributes]): [Weapon!]!
+  updateWeapon(id: ID!, attributes: WeaponAttributes): Weapon
+  deleteWeapon(id: ID!): Weapon
+  deleteAllWeapons: Int
+}
+
+type Query {
+  items: [Item]
+  armor(id: ID!): Armor
+  armors: [Armor!]!
+  findArmors(where: ArmorWhere): [Armor!]!
+  weapon(id: ID!): Weapon
+  weapons: [Weapon!]!
+  findWeapons(where: WeaponWhere): [Weapon!]!
+}
+
+type Weapon {
+  id: ID!
+  name: String!
+  dmg: [String!]!
+  acc: Int!
+  str: Int!
+  mag: Int!
+  ammo: String!
+  value: Int!
+  weight: Int!
+  traits: [String!]!
+}
+
+input WeaponAttributes {
+  name: String!
+  dmg: [String!]!
+  acc: Int!
+  str: Int!
+  value: Int!
+  mag: Int!
+  ammo: String!
+  weight: Int!
+  traits: [String!]!
+}
+
+input WeaponWhere {
+  name: String
+  value: IntFilterType
+  acc: IntFilterType
+  str: IntFilterType
+  mag: IntFilterType
+  weight: IntFilterType
+  limit: Int
+}
+
