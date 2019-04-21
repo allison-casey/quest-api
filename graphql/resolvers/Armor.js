@@ -1,32 +1,7 @@
 import Armor from "../../models/Armor";
+import {generateCrudResolvers, generateNumberFilter} from "./utils";
 
-const resolver = {
-  Query: {
-    armor: async (parent, {id}) => await Armor.findById(id),
-    armors: async (parent, args) => await Armor.find({}).populate()
-  },
-  Mutation: {
-    addArmor: async (root, {attributes}) => await new Armor(attributes).save(),
-    addArmors: async (root, {attributesList}) =>
-      await Armor.insertMany(attributesList),
-    deleteAllArmors: async (root, args) => await Armor.deleteMany(),
-    deleteArmor: async (root, {id}) => await Armor.findByIdAndRemove(id),
-    updateArmor: async (root, args) =>
-      await Armor.findByIdAndUpdate(args.id, args)
-  }
-};
-
-const COMPARITOR_LOOKUP = {
-  LT: "$lt",
-  LE: "$lte",
-  EQ: "$eq",
-  GE: "$gte",
-  GT: "$gt",
-  NE: "$ne"
-};
-
-const generateNumberFilter = (value, valueStr) =>
-  value && {[valueStr]: {[COMPARITOR_LOOKUP[value.comparitor]]: value.input}};
+const resolver = generateCrudResolvers(Armor, "armor");
 
 resolver.Query.findArmors = async (root, {where = {}}) => {
   const search = {
