@@ -2,7 +2,7 @@ import Armor from "../../models/Armor";
 
 export default {
   Query: {
-    armor: async (parent, args) => await Armor.findOne(args),
+    armor: async (parent, {id}) => await Armor.findById(id),
     armors: async (parent, args) => await Armor.find({}).populate()
   },
   Mutation: {
