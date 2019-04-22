@@ -1,7 +1,7 @@
 import {Schema, model} from "mongoose";
 import Item from "./Item";
 
-const ArmorSchema = Item.discriminator(
+const Armor = Item.discriminator(
   "armor",
   new Schema({
     type: {
@@ -16,6 +16,6 @@ const ArmorSchema = Item.discriminator(
   })
 );
 
-const Armor = model("armor");
+// const Armor = model("armor");
 
 export default Armor;

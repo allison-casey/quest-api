@@ -23,7 +23,7 @@ export const generateCrudResolvers = (model, modelStr) => ({
     ["add" + capitalize(modelStr) + "s"]: async (root, {attributesList}) =>
       await model.insertMany(attributesList),
     ["deleteAll" + capitalize(modelStr) + "s"]: async (root, args) =>
-      (await model.deleteMany()).n,
+      (await model.deleteMany({_type: modelStr})).n,
     ["delete" + capitalize(modelStr)]: async (root, {id}) =>
       await model.findByIdAndRemove(id),
     ["update" + capitalize(modelStr)]: async (root, args) =>

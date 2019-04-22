@@ -1,7 +1,7 @@
 import {Schema, model} from "mongoose";
 import Item from "./Item";
 
-const WeaponSchema = Item.discriminator(
+const Weapon = Item.discriminator(
   "weapon",
   new Schema({
     mag: {type: Number, required: true},
@@ -15,6 +15,6 @@ const WeaponSchema = Item.discriminator(
   })
 );
 
-const Weapon = model("weapon");
+// const Weapon = model("weapon");
 
 export default Weapon;
