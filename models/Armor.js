@@ -2,7 +2,7 @@ import {Schema, model} from "mongoose";
 import Item from "./Item";
 
 const Armor = Item.discriminator(
-  "armor",
+  "Armor",
   new Schema({
     type: {
       type: String,
