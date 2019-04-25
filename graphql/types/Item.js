@@ -3,6 +3,13 @@ export default `
 
   input ItemWhere {
     name: String
+    limit: Int
+    value: IntFilterType
+    acc: IntFilterType
+    str: IntFilterType
+    mag: IntFilterType
+    weight: IntFilterType
+    dt: IntFilterType
   }
 
   type Query {
