@@ -13,6 +13,7 @@ const ItemSchema = new Schema(
   baseOptions
 );
 
+ItemSchema.index({_name: "text"});
 ItemSchema.virtual("id").get(function() {
   return this._id;
 });

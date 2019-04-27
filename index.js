@@ -18,9 +18,9 @@ mongoose
   .then(() => console.log("MongoDB connected"))
   .catch(err => console.log("hello", err));
 
+app.use(cors());
 app.use(
   "/quest",
-  cors(),
   bodyParser.json(),
   expressGraphQL({
     schema,

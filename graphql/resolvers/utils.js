@@ -12,6 +12,8 @@ export const capitalize = str => str.charAt(0).toUpperCase() + str.slice(1);
 export const generateNumberFilter = (value, valueStr) =>
   value && {[valueStr]: {[COMPARITOR_LOOKUP[value.comparitor]]: value.input}};
 
+export const generateStringFilter = (input, field) => input && {[field]: input};
+
 export const generateCrudResolvers = (model, modelStr) => ({
   Query: {
     [modelStr]: async (parent, {id}) => await model.findById(id),

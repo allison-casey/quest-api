@@ -1,6 +1,6 @@
 import Item from "../../models/Item";
 
-import {generateNumberFilter} from "./utils";
+import {generateNumberFilter, generateStringFilter} from "./utils";
 
 export default {
   Query: {
@@ -13,7 +13,10 @@ export default {
         ...generateNumberFilter(where.str, "str"),
         ...generateNumberFilter(where.mag, "mag"),
         ...generateNumberFilter(where.weight, "weight"),
-        ...generateNumberFilter(where.dt, "dt")
+        ...generateNumberFilter(where.dt, "dt"),
+        ...generateStringFilter(where.ammo, "ammo"),
+        ...(where.dmg && {dmg: {$all: where.dmg}}),
+        ...(where.traits && {traits: {$all: where.traits}})
       }).limit(where.limit)
   },
   Item: {
