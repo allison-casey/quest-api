@@ -8,7 +8,7 @@ import schema from "./graphql/";
 
 const app = express();
 const PORT = process.env.PORT || "4000";
-const db = "mongodb://127.0.0.1:27017/quest-ql";
+const db = "mongodb://"+ process.env.MONGO_URL +":27017/quest-ql";
 
 mongoose
   .connect(db, {
@@ -18,9 +18,12 @@ mongoose
   .then(() => console.log("MongoDB connected"))
   .catch(err => console.log("hello", err));
 
+
+
+
+app.use(cors({origin: true}))
 app.use(
   "/quest",
-  cors(),
   bodyParser.json(),
   expressGraphQL({
     schema,
