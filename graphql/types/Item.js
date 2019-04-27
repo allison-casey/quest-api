@@ -5,8 +5,8 @@ export default `
     name: String
     limit: Int
     ammo: String
-    dmg: [String]
-    traits: [String]
+    dmg: [String!]
+    traits: [String!]
     value: IntFilterType
     acc: IntFilterType
     str: IntFilterType

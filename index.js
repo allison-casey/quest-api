@@ -8,7 +8,8 @@ import schema from "./graphql/";
 
 const app = express();
 const PORT = process.env.PORT || "4000";
-const db = "mongodb://" + process.env.MONGO_URL + ":27017/quest-ql";
+const db =
+  "mongodb://" + (process.env.MONGO_URL || "localhost") + ":27017/quest-ql";
 
 mongoose
   .connect(db, {
