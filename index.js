@@ -2,6 +2,7 @@ import express from "express";
 import expressGraphQL from "express-graphql";
 import mongoose from "mongoose";
 import bodyParser from "body-parser";
+import graphqlPlayground from "graphql-playground-middleware-express";
 import cors from "cors";
 
 import schema from "./graphql/";
@@ -25,8 +26,9 @@ app.use(
   bodyParser.json(),
   expressGraphQL({
     schema,
-    graphiql: true
+    graphiql: false
   })
 );
+app.get("/playground", graphqlPlayground({endpoint: "/quest"}));
 
 app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
